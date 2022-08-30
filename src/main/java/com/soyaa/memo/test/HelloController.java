@@ -1,14 +1,14 @@
-package com.soyaa.memo.hello;
+package com.soyaa.memo.test;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class TestController {
+public class HelloController {
 
 	@ResponseBody
-	@RequestMapping("/hello")
+	@GetMapping("/hello")
 	public String HelloWorld() {
 		return "hello world!";
 	}
