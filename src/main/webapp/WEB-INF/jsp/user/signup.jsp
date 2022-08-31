@@ -23,12 +23,14 @@
 		<section class="contents d-flex justify-content-center">
 			<div class="join-box my-5">
 				<h2 class="text-center">회원가입</h2>
-				<input type="text" placeholder="아이디" class="form-control mt-3" id="loginIdInput">
-				<input type="password" placeholder="비밀번호" class="form-control mt-2" id="passwordInput">
-				<input type="password" placeholder="비밀번호 확인" class="form-control mt-2" id="passwordConfirmInput">
-				<input type="text" placeholder="이름" class="form-control mt-2" id="nameInput">
-				<input type="text" placeholder="이메일" class="form-control mt-2" id="emailInput">
-				<button type="button" class="btn btn-primary btn-block mt-2" id="joinBtn">가입</button>
+				<form id="signupForm">
+					<input type="text" placeholder="아이디" class="form-control mt-3" id="loginIdInput">
+					<input type="password" placeholder="비밀번호" class="form-control mt-2" id="passwordInput">
+					<input type="password" placeholder="비밀번호 확인" class="form-control mt-2" id="passwordConfirmInput">
+					<input type="text" placeholder="이름" class="form-control mt-2" id="nameInput">
+					<input type="text" placeholder="이메일" class="form-control mt-2" id="emailInput">
+					<button type="submit" class="btn btn-primary btn-block mt-2">가입</button>
+				</form>
 			</div>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
@@ -36,8 +38,8 @@
 	<script>
 		$(document).ready(function() {
 			
-			$("#joinBtn").on("click", function() {
-				
+			// $("#joinBtn").on("click", function() {
+			$("#signupForm").on("submit", function() {	
 				let loginId = $("#loginIdInput").val();
 				let password = $("#passwordInput").val();
 				let passwordConfirm = $("#passwordConfirmInput").val();
@@ -47,27 +49,27 @@
 				// 벨리데이션
 				if(loginId == "") {
 					alert("아이디를 입력해주세요");
-					return;
+					return false;
 				}
 				
 				if(password == "") {
 					alert("비밀번호를 입력해주세요");
-					return;
+					return false;
 				}
 				
 				if(password != passwordConfirm) {
 					alert("비밀번호가 일치하지 않습니다");
-					return;
+					return false;
 				}
 				
 				if(name == "") {
 					alert("이름을 입력해주세요");
-					return;
+					return false;
 				}
 				
 				if(email == "") {
 					alert("이메일을 입력해주세요");
-					return;
+					return false;
 				}
 				
 				// 회원가입 api 호출
