@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.soyaa.memo.common.EncryptUtils;
 import com.soyaa.memo.user.dao.UserDAO;
+import com.soyaa.memo.user.model.User;
 
 @Service
 public class UserBO {
@@ -27,5 +28,15 @@ public class UserBO {
 		String encryptPassword = EncryptUtils.md5(password);
 		
 		return userDAO.insertUser(loginId, encryptPassword, name, email);
+	}
+	
+	// 아이디 패스워드로 사용자 조회
+	// 로그인 해서 사용자 정보 다 긁어올 것이기 때문에 객체로 return 하는 것이 가장 좋겠다.
+	// 로그인한 사람 딱 하나만 가지고 오니까 리스트 x
+	public User getUser(String loginId, String password) {
+		
+		String encryptPassword = EncryptUtils.md5(password);
+		
+		return userDAO.selectUser(loginId, encryptPassword);
 	}
 }
