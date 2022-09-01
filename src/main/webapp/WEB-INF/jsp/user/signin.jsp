@@ -21,12 +21,14 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<section class="contents d-flex justify-content-center">
 			<div class="join-box my-5">
-			<form id="loginForm">
-				<input type="text" placeholder="Username" class="form-control mt-3" id="loginIdInput">
-				<input type="password" placeholder="비밀번호" class="form-control mt-2" id="passwordInput">
-				<button type="submit" class="btn btn-secondary btn-block mt-3">로그인</button>
-			</form>
-				<a href="/user/signup/view">회원가입</a>
+				<form id="loginForm">
+					<input type="text" placeholder="Username" class="form-control mt-3" id="loginIdInput">
+					<input type="password" placeholder="비밀번호" class="form-control mt-2" id="passwordInput">
+					<button type="submit" class="btn btn-secondary btn-block mt-3">로그인</button>
+				</form>
+				<div class="text-center mt-3">
+					<a href="/user/signup/view">회원가입</a>
+				</div>
 			</div>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
@@ -36,19 +38,28 @@
 		$(document).ready(function() {
 			// $("#loginBtn").on("click", function() {
 			
-			$("#loginForm").on("submit", function() {
+			$("#loginForm").on("submit", function(e) {
+				
+				// 이벤트에는 원래 파라미터 e 를 전달 받는다 (객체)
+				// 필요할 때 추가해서 쓰면 된다
+				e.preventDefault(); // 이벤트가 가진 기본 속성을 다 날려 버리는 것   	
+				// submit 은 기본적으로 페이지 이동을 가지고 있다  
+				// 이걸 막기 위해!!
+			
+				// 기본속성을 없애면 submit 이라고 해서 페이지 이동을 막기위해 return false 를 해줄 필요가 없다!
+				
 				let loginId = $("#loginIdInput").val();
 				let password = $("#passwordInput").val();
 				
 				// 벨리데이션
 				if(loginId == "") {
 					alert("아이디를 입력해주세요");
-					return false;
+					return;   
 				}
 				
 				if(password == "") {
 					alert("비밀번호를 입력해주세요");
-					return false;
+					return;
 				}
 				
 				$.ajax({

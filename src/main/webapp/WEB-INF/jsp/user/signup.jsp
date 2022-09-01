@@ -38,8 +38,12 @@
 	<script>
 		$(document).ready(function() {
 			
+			
 			// $("#joinBtn").on("click", function() {
-			$("#signupForm").on("submit", function() {	
+			$("#signupForm").on("submit", function(e) {	
+			
+				e.preventDefault();
+
 				let loginId = $("#loginIdInput").val();
 				let password = $("#passwordInput").val();
 				let passwordConfirm = $("#passwordConfirmInput").val();
@@ -49,27 +53,27 @@
 				// 벨리데이션
 				if(loginId == "") {
 					alert("아이디를 입력해주세요");
-					return false;
+					return;
 				}
 				
 				if(password == "") {
 					alert("비밀번호를 입력해주세요");
-					return false;
+					return;
 				}
 				
 				if(password != passwordConfirm) {
 					alert("비밀번호가 일치하지 않습니다");
-					return false;
+					return;
 				}
 				
 				if(name == "") {
 					alert("이름을 입력해주세요");
-					return false;
+					return;
 				}
 				
 				if(email == "") {
 					alert("이메일을 입력해주세요");
-					return false;
+					return;
 				}
 				
 				// 회원가입 api 호출
