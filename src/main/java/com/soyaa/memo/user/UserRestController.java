@@ -53,9 +53,6 @@ public class UserRestController {
 			, HttpServletRequest request) { // session을 얻어오기 위해 (왜 session 이 필요하지? 로그인 되었다는 정보를 저장하기 위해)
 		
 		
-		
-		
-		
 		User user = userBO.getUser(loginId, password);
 		
 		Map<String, String> result = new HashMap<>();
