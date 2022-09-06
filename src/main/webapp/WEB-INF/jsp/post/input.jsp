@@ -28,7 +28,7 @@
 					<input type="text" class="form-control col-10" id="titleInput">				
 				</div>
 				<textarea class="form-control mt-2" rows="7" id="contentInput"></textarea>
-				<input type="file" class="mt-2">
+				<input type="file" class="mt-2" id="fileInput">
 				
 				<div class="d-flex justify-content-between mt-3">
 					<a class="btn btn-primary" href="/post/list/view">목록으로</a>
@@ -57,10 +57,22 @@
 					return;
 				}
 				
+				// 파일을 포함한 데이터를 전달하는 방법
+				var formData = new FormData(); 
+				formData.append("title", title);
+				formData.append("content", content);
+				formData.append("file", $("#fileInput")[0].files[0]); // 선택된 딱 하나의 파일만 추가한다!
+				
 				$.ajax({
 					type:"post"
 					, url:"/post/create"
-					, data:{"title":title, "content":content}
+					, data:formData
+					// 파일이 포함되었을 때 필요한 request
+		
+					, enctype:"multipart/form-data" // 파일업로드 필수 옵션
+					, processData:false // 파일업로드 필수 옵션 // 문자열로 저장되어있을 때 기본적으로 true 로 되어있는 것으로 썼다! 바꿔줘야함ㄴ
+					, contentType:false // 파일업로드 필수 옵션
+					
 					, success:function(data) {
 						if(data.result == "success") {
 							location.href = "/post/list/view";

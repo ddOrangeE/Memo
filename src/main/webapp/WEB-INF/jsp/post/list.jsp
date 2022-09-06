@@ -35,9 +35,11 @@
 					
 					<tbody>
 						<c:forEach var="post" items="${postList }" >
-						<tr style="cursor:pointer;" onClick="location.href='/post/detail/view?id=${post.id }'">
+						<!--  <tr style="cursor:pointer;" onClick="location.href='/post/detail/view?id=${post.id }'">  --> 
+						<tr>
+							<!-- 다른 방법 -->
 							<td>${post.id }</td>
-							<td>${post.subject }</td>
+							<td><a href="/post/detail/view?id=${post.id }">${post.subject }</a></td>
 							<td><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						</tr>
 						</c:forEach>
