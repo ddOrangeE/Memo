@@ -23,7 +23,7 @@
 		<section class="contents d-flex justify-content-center">
 			<div class="join-box my-5">
 				<h2 class="text-center">회원가입</h2>
-				<form id="signupForm">
+				<form id="signupForm">  <!-- form : 클릭, 엔터 먹힘 -->
 					<input type="text" placeholder="아이디" class="form-control mt-3" id="loginIdInput">
 					<input type="password" placeholder="비밀번호" class="form-control mt-2" id="passwordInput">
 					<input type="password" placeholder="비밀번호 확인" class="form-control mt-2" id="passwordConfirmInput">
